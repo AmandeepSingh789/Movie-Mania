@@ -5,10 +5,8 @@ import "./App.css";
 import SearchIcon from "./search.svg";
 // 85c97aa2
 // http://www.omdbapi.com/?i=tt3896198&apikey=85c97aa2
-let searches =0;
-function incrementCounter(){
-    searches=searches+1;
-}
+let initialSearch =true;
+
 const api_URL = "http://www.omdbapi.com/?apikey=85c97aa2";
 const App = () => {
 
@@ -17,8 +15,9 @@ const App = () => {
   const searchMovies = async (title) => {
     const response = await fetch(`${api_URL}&s=${title}`);
     const data = await response.json();
+    console.log(data);
     setMovies(data.Search);
-    searches=searches+1;
+    initialSearch=false;
   };
 
   return (
@@ -52,10 +51,10 @@ const App = () => {
         </div>
       ) : (
         <div className="empty">
-            {searches > 0 ?
+            {initialSearch==false ?
             (<h2>Movie Not Found</h2>)
             : (
-                <h2>Search Your Favorite Movie </h2>
+                <h2>Find Some Movies </h2>
             )
          }
           
