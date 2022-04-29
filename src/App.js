@@ -32,7 +32,7 @@ const App = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyPress={(ev) => {
             if (ev.key === "Enter") {
-                searchMovies(ev.key)
+                searchMovies(searchTerm)
             }
             }}
         />
